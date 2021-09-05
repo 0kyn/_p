@@ -1,0 +1,14 @@
+DEBUG=false
+
+# change local to false if you want to use _p.sh across multiple project contained in $projects_dir
+local=true
+
+interactive_mode=false
+
+default_p_dir="._p"
+
+default_projects_dir="/path/to/projects_dir"
+projects_dir=$default_projects_dir
+projects_dir_to_ignore=("'test' 'lost+found' '.*'")
+
+project_dir_to_ignore=("vendor node_modules ._p public")
