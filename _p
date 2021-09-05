@@ -202,7 +202,7 @@ run_interactive_mode() {
             ;;
           *)
             clear
-            show_file $project_p_dir/$file $project_name $file
+            show_file $project_p_dir/$file
             ;;
           esac
           break
