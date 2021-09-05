@@ -27,12 +27,12 @@ cd [ALL_PROJECTS_DIR]/[PROJECT_DIR]/._p
 You might also want to add `._p` directory to your root `.gitignore` file, in the case you store sensitive informations in these files.
 
 ## Markdown Files
-- `bugs.md` : Describe tricky bugs and how you solved it
-- `todo.md` : List tasks per module, note some features ideas or enhancements, usefull resources for your project
-- `tools.md` : Uses as a reminder for command line you need to run regularly (npm docker composer)
-- `memo.md` : A static brain to store some technical specs, (temporary testing only /!\\) credentials.
+- `_bugs.md` : Describe tricky bugs and how you solved it
+- `_todo.md` : List tasks per module, note some features ideas or enhancements, usefull resources for your project
+- `_tools.md` : Uses as a reminder for command line you need to run regularly (npm docker composer)
+- `_memo.md` : A static brain to store some technical specs, (temporary testing only /!\\) credentials.
 
-You can add or edit as many md files as you want. ex: `guideline.md`, `doc.md`, `tutorial.md`...
+You can add or edit as many md files as you want. ex: `_guideline.md`, `_doc.md`, `_tutorial.md`...
 
 ## CLI
 `_p` could be used to interact with md files or even read file from your project.
@@ -61,10 +61,15 @@ You migth change `local` to `true` to interact with every projects.
 ### Show file content
 ```bash
 # show todo.md content of
-./_p app.test -f todo
+./_p app.test -f _todo
 
 # show memo.md content
 ./_p app.test _memo
+```
+
+**If your project name start with "_", you need to arbitrary define your project name to avoid conflict as follow :**
+```bash
+./_p -p _app _todo
 ```
 
 ### Search pattern in file
@@ -81,7 +86,7 @@ You migth change `local` to `true` to interact with every projects.
 
 ## /!\ Warning /!\
 From the moment you store sensitive data into these .md file you should be carefull.  
-`memo.md` **should never contains publicly exposed environments credentials and should not be publicly avalaible.** 
+`_memo.md` **should never contains publicly exposed environments credentials and should not be publicly avalaible.** 
 
 
 ## License
