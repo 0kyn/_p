@@ -35,7 +35,7 @@ You might also want to add `._p` directory to your root `.gitignore` file, in th
 You can add or edit as many md files as you want. ex: `guideline.md`, `doc.md`, `tutorial.md`...
 
 ## CLI
-`_p.sh` could be used to interact with md files or even read file from your project.
+`_p` could be used to interact with md files or even read file from your project.
 
 Command could be run **locally** to deals only to **current project**, or **glabally** to deals with **all projects** contained in [ALL_PROJECTS_DIR]
 
@@ -44,39 +44,39 @@ Rename config sample file
 ```bash
 mv _p.config.example _p.config
 ```
-`_p.config` contains `_p.sh` configuration such as your root directory path containing all your project, default `._p` directory name etc...
+`_p.config` contains `_p` configuration such as your root directory path containing all your project, default `._p` directory name etc...
 
 You migth change `local` to `true` to interact with every projects.
 
 ### Run interactive mode
 ```bash
-./_p.sh -i
+./_p -i
 ```
 
 ### List projects
 ```bash
-./_p.sh -ls
+./_p -ls
 ```
 
 ### Show file content
 ```bash
 # show todo.md content of
-./_p.sh app.test -f todo
+./_p app.test -f todo
 
 # show memo.md content
-./_p.sh app.test _memo
+./_p app.test _memo
 ```
 
 ### Search pattern in file
 ```bash
 # search files containing @todo in app.test project
-./_p.sh app.test @todo
+./_p app.test @todo
 
 # search specific pattern in app.test project
-./_p.sh app.test -s _CONST
+./_p app.test -s _CONST
 
 # search files containing @foo in all projects from [ALL_PROJECTS_DIR]
-./_p.sh @foo
+./_p @foo
 ```
 
 ## /!\ Warning /!\
