@@ -41,6 +41,7 @@ function set_local_var() {
 
 function reset_local_var() {
   projects_dir=$default_projects_dir
+  project_name=
 }
 
 function join_by {
