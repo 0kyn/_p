@@ -21,6 +21,7 @@ Options:
      -l|--local                 Run in current project scope
      -g|--global                Run in all projects scope
      -w|--working-dir=DIR       Define project directory
+     -p|--project-name=NAME     Define project name
 
     #@todo
     #--edit                     Edit mode
@@ -99,7 +100,7 @@ function search() {
 
 function search_md_file() {
   if [ $local == false ]; then
-    file_name=${param:1}.md
+    file_name=${param}.md
     file_path=$projects_dir/$project_name/$default_p_dir/$file_name
   fi
 }
@@ -137,6 +138,10 @@ function parse_params() {
       projects_dir=$2
       shift 2
       ;;
+    -p | --project-name)
+      project_name=$2
+      shift 2
+      ;;
 
     # commands
     -ls | --list)
@@ -156,7 +161,7 @@ function parse_params() {
     -f | --file | _*)
       local file_name=$2.md
       if [[ $param =~ ^_ ]]; then
-        file_name=${param:1}.md
+        file_name=${param}.md
       fi
 
       file_path=$projects_dir/$project_name/$default_p_dir/$file_name
