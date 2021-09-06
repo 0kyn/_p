@@ -9,18 +9,18 @@
 ## Todo
 
 ### Global
-- [] task 1
-- [] task 2
-- [] task 3
+- [ ] task 1
+- [ ] task 2
+- [ ] task 3
 
 ### Module A
 - [x] task 1
 - [x] task 2
-- [] task 3
+- [ ] task 3
 
 ### Module B 
 - [x] task 1
-- [] task 2
+- [ ] task 2
 
 
 ## Misc.
