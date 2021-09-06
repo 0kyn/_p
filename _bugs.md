@@ -8,7 +8,6 @@
 
 - another bug i can't explain exactly, but when [...]
 
-
 ## Module A
 
 ### [FEATURE NAME]
