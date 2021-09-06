@@ -79,8 +79,6 @@ function show_file() {
   printf "\n"
   cat $file_path
   printf "\n"
-  echo "-------"
-  printf "\n"
 }
 
 function search() {
