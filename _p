@@ -64,7 +64,7 @@ function list_projects() {
   unset 'params[${#params[@]}-1]' # remove last index "-o"
   params+=("\) -prune -o -print")
 
-  cmd_string="find $projects_dir ${params[@]} | xargs -I {} basename {}"
+  local cmd_string="find $projects_dir ${params[@]} | xargs -I {} basename {}"
   eval $cmd_string
   exit
 }
@@ -86,16 +86,15 @@ function show_file() {
 function search() {
   local pattern="$1"
 
-  if [ $local == false ]; then
-    if [ -z ${project_name+x} ]; then
-      project_path=$projects_dir/
-    else
-      project_path=$projects_dir/$project_name/
-    fi
+  if [ -z ${project_name+x} ]; then
+    project_path=$projects_dir/
+  else
+    project_path=$projects_dir/$project_name/
   fi
 
-  # eval "find $project_path -type d $(for ed in $project_dir_to_ignore; do echo -n "-name \"$ed\" -prune -o "; done;) -type f -exec grep --color=always -e @todo {} + | more"
-  eval "grep -R --color=always --exclude-dir={$(join_by ',' $project_dir_to_ignore)} '$pattern' $project_path | more"
+  # eval "find $project_path -type d $(for ed in $project_dir_to_ignore; do echo -n "-name \"$ed\" -prune -o "; done) -type f -exec grep --color=always -e @todo {} + | more"
+  local cmd_string="grep -R --color=always --exclude-dir={$(join_by ',' $project_dir_to_ignore)} '$pattern' $project_path | more"
+  eval $cmd_string
 }
 
 function search_md_file() {
