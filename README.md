@@ -90,7 +90,7 @@ default_projects_dir="/path/to/projects_dir"
 # [...]
 ```
 
-You migth change `local` to `true` to interact with every projects.
+You migth set `local` to `false` to interact with every projects.
 
 ### Run interactive mode
 
