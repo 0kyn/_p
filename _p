@@ -95,13 +95,6 @@ function search() {
   eval $cmd_string
 }
 
-function search_md_file() {
-  if [ $local == false ]; then
-    file_name=${param}.md
-    file_path=$projects_dir/$project_name/$default_p_dir/$file_name
-  fi
-}
-
 function parse_params() {
   local param
   while [[ $# -gt 0 ]]; do
