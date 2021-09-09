@@ -187,7 +187,11 @@ run_interactive_mode() {
 
         options=()
         for filename in "$project_p_dir/"*; do
-          options+=($(basename $filename))
+          file_basename=($(basename $filename))
+
+          if [[ $file_basename =~ ^_.*\.md$ ]]; then
+            options+=($file_basename)
+          fi
         done
         options+=("Choose another project")
 
