@@ -1,6 +1,6 @@
 # _p
 
-_p is a project related set of .md files trying to solve @todo lies, human memory leak, and more... 
+_p is a bash script mainly designed to works with [_p templates](https://github.com/0kyn/_p-templates).
 
 
 ## Installation
@@ -10,23 +10,20 @@ Go to the root directory of your current project
 cd /path/to/project
 ```
 
-Clone the repository into a folder named `._p`.
+Download the script & the config file
 ```bash
-git clone https://github.com/0kyn/_p.git ._p
+curl https://raw.githubusercontent.com/0kyn/_p/master/_p -o _p
+curl https://raw.githubusercontent.com/0kyn/_p/master/_p.config.example -o _p.config
 ```
 
-If you don't want _p to be a git submodule of your current project, you should only clone the master branch of the repository, without keeping `.git` directory.
+Clone [_p templates](https://github.com/0kyn/_p-templates) repository into a folder named `._p`
 ```bash
-git clone --depth=1 --branch=master https://github.com/0kyn/_p.git ._p
-rm -rf ._p/.git
-```
-
-Go to `._p`
-```bash
-cd ._p
+git clone https://github.com/0kyn/_p-templates.git ._p
 ```
 
 ### Structure example
+_p-templates stands into **._p** directory
+_p script stands into the project root directory
 
 projects/  
 ├─ projectA/  
@@ -35,28 +32,18 @@ projects/
 │  ├─ public/  
 │  ├─ src/  
 │  ├─ vendor/  
+│  ├─ **_p**  
+│  ├─ **_p.config**  
 │  ├─ .gitignore  
 │  ├─ composer.json  
 │  ├─ package.json  
-│  ├─ Readme.md  
+│  ├─ README.md  
 ├─ projectB/  
 ├─ projectC/  
+├─ _projectD/  
 
-You might also want to add `._p` directory to your root `.gitignore` file, in the case where you store sensitive informations in these files and/or your repository is going to be public.
-
-
-## Markdown Files
-
-- `_bugs.md`    : Describes tricky bugs and how you solved it
-- `_todo.md`    : Lists tasks per module, note some features ideas, enhancements, usefull resources...
-- `_tools.md`   : Uses as a reminder for command line you need to run regularly (npm docker composer)
-- `_memo.md`    : Uses to store some technical specs, (temporary testing only /!\\) credentials, keywords related to your project
-
-You can add or edit as many md files as you want. ex: `_guideline.md`, `_doc.md`, `_tutorial.md`...
 
 ## Usage
-
-`_p` is a bash script file that could be used to interact with md files and even read your projects files.
 
 ```bash
 ./_p --help
@@ -73,11 +60,7 @@ If you want to run global scope as default, you need to edit config file.
 
 ### Config
 
-Rename `_p.config.example` file
-```bash
-mv _p.config.example _p.config
-```
-`_p.config` contains `_p` configuration of which:
+`_p.config` contains `_p` configuration:
 
 ``` bash
 # default local scope
@@ -110,7 +93,7 @@ You migth set `local` to `false` to interact with every projects.
 # show _todo.md content from your current project
 ./_p --file _todo
 
-# show _memo.md content from projectB (required global scope)
+# show _memo.md content from projectB (required $default_projects_dir defined in _p.config)
 ./_p --global projectB _memo
 ```
 
@@ -131,13 +114,6 @@ You migth set `local` to `false` to interact with every projects.
 # search @foo string in each project from projects directory defined in $default_projects_dir
 ./_p --global @foo
 ```
-
-
-## /!\ Warning /!\
-
-From the moment where you store sensitive data into these .md file you should be carefull.  
-`_memo.md` **should never contains publicly exposed environments credentials and should not be publicly avalaible.** 
-
 
 ## License
 
