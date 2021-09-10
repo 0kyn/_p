@@ -52,6 +52,22 @@ function join_by {
   fi
 }
 
+function array_to_params() {
+  local param_name=$1
+  shift
+  local array=$@
+
+  local string_params=""
+  for item in $array; do
+    string_params+=$param_name
+    string_params+="="
+    string_params+=\"$item\"
+    string_params+=" "
+  done
+
+  echo $string_params
+}
+
 function list_projects() {
   echo "Projects in $projects_dir:"
   printf "\n"
@@ -90,7 +106,10 @@ function search() {
     project_path=$projects_dir/$project_name/
   fi
 
-  local cmd_string="grep -R --color=always --exclude-dir={$(join_by ',' $project_dir_to_ignore)} '$pattern' $project_path | more"
+  local dir_to_ignore_params=$(array_to_params "--exclude-dir" ${project_dir_to_ignore[@]})
+
+  local cmd_string="grep -R --color=always $dir_to_ignore_params '$pattern' $project_path | more"
+
   eval $cmd_string
 }
 
