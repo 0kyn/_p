@@ -36,8 +36,8 @@ EOF
 }
 
 function set_local_var() {
-  projects_dir="$(dirname $(dirname ${script_dir}))"
-  project_name="$(basename $(dirname ${script_dir}))"
+  projects_dir=$(dirname ${script_dir})
+  project_name="$(basename ${script_dir})"
 }
 
 function reset_local_var() {
