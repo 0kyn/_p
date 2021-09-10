@@ -12,3 +12,4 @@ projects_dir=$default_projects_dir
 projects_dir_to_ignore=("'test' 'lost+found' '.*'")
 
 project_dir_to_ignore=("vendor" "node_modules" "._p" "public" ".*")
+project_files_to_ignore=("_p*" "README.md")

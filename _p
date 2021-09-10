@@ -107,8 +107,9 @@ function search() {
   fi
 
   local dir_to_ignore_params=$(array_to_params "--exclude-dir" ${project_dir_to_ignore[@]})
+  local files_to_ignore_params=$(array_to_params "--exclude" "${project_files_to_ignore[@]}")
 
-  local cmd_string="grep -R --color=always $dir_to_ignore_params '$pattern' $project_path | more"
+  local cmd_string="grep -R --color=always $dir_to_ignore_params $files_to_ignore_params '$pattern' $project_path | more"
 
   eval $cmd_string
 }
