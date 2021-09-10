@@ -1,2 +1,5 @@
-*.bak
-_p.config
+*
+!.gitignore
+!.md*
+!_p
+!_p.config.example
