@@ -2,7 +2,6 @@
 
 _p is a bash script mainly designed to works with [_p templates](https://github.com/0kyn/_p-templates).
 
-
 ## Installation
 
 Go to the root directory of your current project
@@ -25,8 +24,8 @@ git clone https://github.com/0kyn/_p-templates.git ._p
 ```
 
 ### Structure example
-_p-templates stands into **._p** directory
-_p script stands into the project root directory
+_p-templates stands into **._p** directory  
+**_p** script stands into the project root directory
 
 projects/  
 ├─ projectA/  
