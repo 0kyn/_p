@@ -90,7 +90,6 @@ function search() {
     project_path=$projects_dir/$project_name/
   fi
 
-  # eval "find $project_path -type d $(for ed in $project_dir_to_ignore; do echo -n "-name \"$ed\" -prune -o "; done) -type f -exec grep --color=always -e @todo {} + | more"
   local cmd_string="grep -R --color=always --exclude-dir={$(join_by ',' $project_dir_to_ignore)} '$pattern' $project_path | more"
   eval $cmd_string
 }
