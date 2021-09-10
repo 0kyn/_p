@@ -14,6 +14,9 @@ Download the script & the config file
 ```bash
 curl https://raw.githubusercontent.com/0kyn/_p/master/_p -o _p
 curl https://raw.githubusercontent.com/0kyn/_p/master/_p.config.example -o _p.config
+
+# make _p executable
+chmod +x _p
 ```
 
 Clone [_p templates](https://github.com/0kyn/_p-templates) repository into a folder named `._p`
