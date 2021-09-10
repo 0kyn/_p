@@ -1,6 +1,6 @@
-DEBUG=false
+# DEBUG=false
 
-# change local to false if you want to use _p.sh across multiple project contained in $projects_dir
+# change local to false if you want to use _p across multiple project contained in $projects_dir
 local=true
 
 interactive_mode=false
