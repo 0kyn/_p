@@ -87,12 +87,6 @@ default_projects_dir="/path/to/projects_dir"
 
 You migth set `local` to `false` to interact with every projects.
 
-### Run interactive mode
-
-```bash
-./_p --interactive
-```
-
 ### List projects
 
 ```bash
@@ -125,6 +119,12 @@ You migth set `local` to `false` to interact with every projects.
 
 # search @foo string in each project from projects directory defined in $default_projects_dir
 ./_p --global @foo
+```
+
+### Run interactive mode
+
+```bash
+./_p --interactive
 ```
 
 ## License
