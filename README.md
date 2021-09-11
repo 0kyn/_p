@@ -18,6 +18,16 @@ curl https://raw.githubusercontent.com/0kyn/_p/master/_p.config.example -o _p.co
 chmod +x _p
 ```
 
+## Install default _p templates
+
+Run _p initialization
+
+```bash
+./_p --init
+```
+
+**OR**
+
 Clone [_p templates](https://github.com/0kyn/_p-templates) repository into a folder named `._p`
 ```bash
 git clone https://github.com/0kyn/_p-templates.git ._p
