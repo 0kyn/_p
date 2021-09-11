@@ -101,17 +101,19 @@ function array_to_params() {
 function list_projects() {
   echo "Projects in $projects_dir:"
   printf "\n"
-  params=("-mindepth 1 -maxdepth 1 -type d \(")
-  for dir in $projects_dir_to_ignore; do
+  params=("-mindepth 1" "-maxdepth 1" "-type d \(")
+  set -f
+  for dir in ${projects_dir_to_ignore[@]}; do
     params+=("-name")
     params+=($dir)
     params+=("-o")
   done
   unset 'params[${#params[@]}-1]' # remove last index "-o"
-  params+=("\) -prune -o -print")
+  params+=("\)" "-prune" "-o" "-print")
 
   local cmd_string="find $projects_dir ${params[@]} | xargs -I {} basename {}"
   eval $cmd_string
+  set +f
   exit
 }
 
