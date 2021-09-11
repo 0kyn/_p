@@ -10,6 +10,10 @@ script_dir="$(
 source $script_dir/_p.config
 
 ### FUNCTIONS ###
+function _p_print() {
+  echo ">" $1
+}
+
 function help() {
   cat <<EOF
 Usage: _p [OPTIONS] [PROJECT_NAME] COMMAND
