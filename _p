@@ -31,12 +31,38 @@ Options:
     #--edit                     Edit mode
 
 Commands:
+    --init                      Create ._p directory and install default _p templates
     -ls|--list                  List scoped projects
     -s | --search=PATTERN       Search for PATTERN into files
     -f | --file=FILENAME        Displays the content of FILENAME from PROJECT_NAME
     @PATTERN                    Search for string "@PATTERN" into files
     _FILENAME                   Displays the content of FILENAME.md file
 EOF
+}
+
+function init() {
+  if [[ -d "$default_p_dir" ]]; then
+    _p_print "cannot create directory $default_p_dir it already exists."
+  else
+    mkdir $default_p_dir
+    _p_print "$default_p_dir directory created"
+
+    git clone -q --depth=1 --branch=master "https://github.com/0kyn/_p-templates" $default_p_dir
+    _p_print "_p templates repository cloned into $default_p_dir"
+
+    _p_print "Keep git related folder and files such as: .git/, .gitignore, LICENCE, README.md [y/N] ?"
+    local keep_git
+    read -r keep_git
+    if [[ ! $keep_git =~ [Yy] ]]; then
+      rm -rf $default_p_dir/.git
+      rm $default_p_dir/.gitignore
+      rm $default_p_dir/LICENCE
+      rm $default_p_dir/README.md
+      _p_print "_p templates repository cleaned"
+    fi
+
+    _p_print "_p templates installed"
+  fi
 }
 
 function set_local_var() {
@@ -157,6 +183,11 @@ function parse_params() {
       ;;
 
     # commands
+    --init)
+      init
+      exit 0
+      ;;
+
     -ls | --list)
       list_projects $projects_dir
       exit 0
