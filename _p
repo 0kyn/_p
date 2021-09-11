@@ -10,10 +10,35 @@ script_dir="$(
 source $script_dir/_p.config
 
 ### FUNCTIONS ###
+## utils
+function join_by {
+  local d=${1-} f=${2-}
+  if shift 2; then
+    printf %s "$f" "${@/#/$d}"
+  fi
+}
+
+function array_to_params() {
+  local param_name=$1
+  shift
+  local array=$@
+
+  local string_params=""
+  for item in $array; do
+    string_params+=$param_name
+    string_params+="="
+    string_params+=\"$item\"
+    string_params+=" "
+  done
+
+  echo $string_params
+}
+
 function _p_print() {
   echo ">" $1
 }
 
+## commands
 function help() {
   cat <<EOF
 Usage: _p [OPTIONS] [PROJECT_NAME] COMMAND
@@ -65,39 +90,6 @@ function init() {
   fi
 }
 
-function set_local_var() {
-  projects_dir=$(dirname ${script_dir})
-  project_name="$(basename ${script_dir})"
-}
-
-function reset_local_var() {
-  projects_dir=$default_projects_dir
-  project_name=
-}
-
-function join_by {
-  local d=${1-} f=${2-}
-  if shift 2; then
-    printf %s "$f" "${@/#/$d}"
-  fi
-}
-
-function array_to_params() {
-  local param_name=$1
-  shift
-  local array=$@
-
-  local string_params=""
-  for item in $array; do
-    string_params+=$param_name
-    string_params+="="
-    string_params+=\"$item\"
-    string_params+=" "
-  done
-
-  echo $string_params
-}
-
 function list_projects() {
   echo "Projects in $projects_dir:"
   printf "\n"
@@ -145,6 +137,17 @@ function search() {
   local cmd_string="grep -R --color=always $project_dir_to_ignore_params $files_to_ignore_params $_projects_dir_to_ignore_params '$pattern' $project_path | more"
 
   eval $cmd_string
+}
+
+## params parsing/settings
+function set_local_var() {
+  projects_dir=$(dirname ${script_dir})
+  project_name="$(basename ${script_dir})"
+}
+
+function reset_local_var() {
+  projects_dir=$default_projects_dir
+  project_name=
 }
 
 function parse_params() {
