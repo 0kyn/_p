@@ -226,14 +226,16 @@ function parse_params() {
       ;;
 
     -f | --file | _*)
-      local file_name=$2.md
+      local file_name
       if [[ $param =~ ^_ ]]; then
         file_name=${param}.md
+        shift
+      else
+        file_name=$2.md
+        shift 2
       fi
 
       file_path=$projects_dir/$project_name/$default_p_dir/$file_name
-
-      shift 2
 
       if [[ "$@" =~ -h|--headings ]]; then
         local heading=$2
