@@ -109,16 +109,32 @@ function list_projects() {
   exit
 }
 
-function show_file() {
+function print_header() {
   file_path=$1
   project_name=$(basename $(dirname $(dirname $file_path)))
   file_name=$(basename $file_path)
 
   echo "############## $project_name | $file_name ##############"
-  echo $file_path
+  _p_print "File path: $file_path"
   printf "\n"
+}
+
+function show_file() {
+  file_path=$1
+  print_header $file_path
   cat $file_path
   printf "\n"
+}
+
+function extract_headings() {
+  local file_path=$1
+  local heading=$2
+
+  print_header $file_path
+  _p_print "Heading(s) match: \"$heading.*\""
+  printf "\n"
+
+  grep -Pzo "(#.*$heading.*([\n\r]|.)*?(?=#))" "$file_path"
 }
 
 function search() {
@@ -216,7 +232,15 @@ function parse_params() {
 
       file_path=$projects_dir/$project_name/$default_p_dir/$file_name
 
-      show_file "$file_path"
+      shift 2
+
+      if [[ "$@" =~ -h|--headings ]]; then
+        local heading=$2
+        extract_headings $file_path $heading
+      else
+        show_file "$file_path"
+      fi
+
       exit 0
       ;;
 

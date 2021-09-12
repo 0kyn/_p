@@ -108,6 +108,12 @@ You migth set `local` to `false` to interact with every projects.
 ./_p --project-name _projectD _todo
 ```
 
+### Extract heading(s) block matching pattern from md files
+```bash
+./_p --file _todo --headings Global
+```
+This will return all items of **## Global** block in `todo.md`.
+
 ### Search string pattern in files
 
 ```bash
