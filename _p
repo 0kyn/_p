@@ -60,6 +60,7 @@ Commands:
     -ls|--list                  List scoped projects
     -s | --search=PATTERN       Search for PATTERN into files
     -f | --file=FILENAME        Displays the content of FILENAME from PROJECT_NAME
+      -h | --headings=PATTERN   Extract ##PATERN block from FILENAME
     @PATTERN                    Search for string "@PATTERN" into files
     _FILENAME                   Displays the content of FILENAME.md file
 EOF
