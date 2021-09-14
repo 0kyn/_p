@@ -135,7 +135,7 @@ function extract_headings() {
   _p_print "Heading(s) match: \"$heading.*\""
   printf "\n"
 
-  grep -Pzo "(#.*$heading.*([\n\r]|.)*?(?=#))" "$file_path"
+  grep -Pzo "(#.*$heading.*([\n\r]|.)*?(?=#+?\s))" "$file_path"
 }
 
 function search() {
