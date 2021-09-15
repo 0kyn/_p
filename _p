@@ -61,6 +61,7 @@ Commands:
     -s | --search=PATTERN       Search for PATTERN into files
     -f | --file=FILENAME        Displays the content of FILENAME from PROJECT_NAME
       -h | --headings=PATTERN   Extract ##PATTERN block from FILENAME
+      --clear                   Erase all file data except headings
     @PATTERN                    Search for string "@PATTERN" into files
     _FILENAME                   Displays the content of FILENAME.md file
 EOF
@@ -89,6 +90,20 @@ function init() {
 
     _p_print "_p templates installed"
   fi
+}
+
+function clear_template() {
+  local file_path=$1
+
+  _p_print "Do you want to clear $file_path template? It will erase template data except headings [y|N]?"
+  local clear_template_choice
+  read -r clear_template_choice
+  if [[ $clear_template_choice =~ [Yy] ]]; then
+    sed -i 's/^[^#].*//gm; /^$/d; s/$/\n/gm' $file_path
+    _p_print "Template cleared"
+  fi
+
+  exit 0
 }
 
 function list_projects() {
@@ -240,9 +255,15 @@ function parse_params() {
       if [[ "$@" =~ -h|--headings ]]; then
         local heading=$2
         extract_headings $file_path $heading
-      else
-        show_file "$file_path"
+        exit 0
       fi
+
+      if [[ "$@" =~ --clear ]]; then
+        clear_template $file_path
+        exit 0
+      fi
+
+      show_file "$file_path"
 
       exit 0
       ;;
