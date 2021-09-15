@@ -61,7 +61,7 @@ Commands:
     -s | --search=PATTERN       Search for PATTERN into files
     -f | --file=FILENAME        Displays the content of FILENAME from PROJECT_NAME
       -h | --headings=PATTERN   Extract ##PATTERN block from FILENAME
-      --clear                   Erase all file data except headings
+      --clear                   Erase data from FILENAME except headings
     @PATTERN                    Search for string "@PATTERN" into files
     _FILENAME                   Displays the content of FILENAME.md file
 EOF
