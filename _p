@@ -23,13 +23,15 @@ function array_to_params() {
   shift
   local array=$@
 
-  local string_params=""
+  local string_params
+  set -f
   for item in $array; do
     string_params+=$param_name
     string_params+="="
-    string_params+=\"$item\"
+    string_params+="$item"
     string_params+=" "
   done
+  set +f
 
   echo $string_params
 }
@@ -109,18 +111,19 @@ function clear_template() {
 function list_projects() {
   echo "Projects in $projects_dir:"
   printf "\n"
-  params=("-mindepth 1" "-maxdepth 1" "-type d \(")
+
+  params=(-mindepth "1" -maxdepth "1" -type "d" \()
   set -f
   for dir in ${projects_dir_to_ignore[@]}; do
-    params+=("-name")
-    params+=($dir)
-    params+=("-o")
+    params+=(-name)
+    params+=("$dir")
+    params+=(-o)
   done
   unset 'params[${#params[@]}-1]' # remove last index "-o"
-  params+=("\)" "-prune" "-o" "-print")
+  params+=(\) -prune -o -print)
 
-  local cmd_string="find $projects_dir ${params[@]} | xargs -I {} basename {}"
-  eval $cmd_string
+  find "$projects_dir" "${params[@]}" | xargs -I {} basename {}
+
   set +f
   exit
 }
@@ -162,13 +165,12 @@ function search() {
     project_path=$projects_dir/$project_name/
   fi
 
-  local project_dir_to_ignore_params=$(array_to_params "--exclude-dir" ${project_dir_to_ignore[@]})
-  local _projects_dir_to_ignore_params=$(array_to_params "--exclude-dir" ${projects_dir_to_ignore[@]})
-  local files_to_ignore_params=$(array_to_params "--exclude" "${project_files_to_ignore[@]}")
+  local dirs_to_ignore=("${project_dir_to_ignore[@]}" "${projects_dir_to_ignore[@]}")
+  local dirs_to_ignore_params=$(array_to_params --exclude-dir "${dirs_to_ignore[@]}")
 
-  local cmd_string="grep -R --color=always $project_dir_to_ignore_params $files_to_ignore_params $_projects_dir_to_ignore_params '$pattern' $project_path | more"
+  local files_to_ignore_params=$(array_to_params --exclude "${project_files_to_ignore[@]}")
 
-  eval $cmd_string
+  grep -R --color=always $dirs_to_ignore_params $files_to_ignore_params $pattern $project_path | more
 }
 
 ## params parsing/settings
