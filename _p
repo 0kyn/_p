@@ -11,14 +11,14 @@ source $script_dir/_p.config
 
 ### FUNCTIONS ###
 ## utils
-function join_by {
+join_by() {
   local d=${1-} f=${2-}
   if shift 2; then
     printf %s "$f" "${@/#/$d}"
   fi
 }
 
-function array_to_params() {
+array_to_params() {
   local param_name=$1
   shift
   local array=$@
@@ -36,12 +36,12 @@ function array_to_params() {
   echo $string_params
 }
 
-function _p_print() {
+_p_print() {
   echo ">" $1
 }
 
 ## commands
-function help() {
+help() {
   cat <<EOF
 Usage: _p [OPTIONS] [PROJECT_NAME] COMMAND
 
@@ -69,7 +69,7 @@ Commands:
 EOF
 }
 
-function init() {
+init() {
   if [[ -d "$default_p_dir" ]]; then
     _p_print "cannot create directory $default_p_dir it already exists."
   else
@@ -94,7 +94,7 @@ function init() {
   fi
 }
 
-function clear_template() {
+clear_template() {
   local file_path=$1
 
   _p_print "Do you want to clear $file_path template? It will erase template data except headings [y|N]?"
@@ -108,7 +108,7 @@ function clear_template() {
   exit 0
 }
 
-function list_projects() {
+list_projects() {
   echo "Projects in $projects_dir:"
   printf "\n"
 
@@ -128,7 +128,7 @@ function list_projects() {
   exit
 }
 
-function print_header() {
+print_header() {
   file_path=$1
   project_name=$(basename $(dirname $(dirname $file_path)))
   file_name=$(basename $file_path)
@@ -138,14 +138,14 @@ function print_header() {
   printf "\n"
 }
 
-function show_file() {
+show_file() {
   file_path=$1
   print_header $file_path
   cat $file_path
   printf "\n"
 }
 
-function extract_headings() {
+extract_headings() {
   local file_path=$1
   local heading=$2
 
@@ -156,7 +156,7 @@ function extract_headings() {
   grep -Pzo "(#.*$heading.*([\n\r]|.)*?(?=#+?\s))" "$file_path"
 }
 
-function search() {
+search() {
   local pattern="$1"
 
   if [ -z ${project_name+x} ]; then
@@ -174,17 +174,17 @@ function search() {
 }
 
 ## params parsing/settings
-function set_local_var() {
+set_local_var() {
   projects_dir=$(dirname ${script_dir})
   project_name="$(basename ${script_dir})"
 }
 
-function reset_local_var() {
+reset_local_var() {
   projects_dir=$default_projects_dir
   project_name=
 }
 
-function parse_params() {
+parse_params() {
   local param
   while [[ $# -gt 0 ]]; do
     param="$1"
