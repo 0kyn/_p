@@ -9,7 +9,7 @@ _p is a bash script mainly designed to works with [_p templates](https://github.
 To install `_p` globally you should run the [install script](https://github.com/0kyn/_p/blob/master/_p)
 
 ```bash
-curl -so- file:///_p/install.sh | bash
+curl -so- https://raw.githubusercontent.com/0kyn/_p/master/install.sh | bash
 ```
 
 This script clones `_p` repository into your home repository `~/._p`, and add export to your `~/.bashrc`
