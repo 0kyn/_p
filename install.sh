@@ -14,7 +14,8 @@ install() {
     _p_echo "_p is already installed in ${_p_install_dir}"
 
   else
-    git clone --depth=1 "${_p_repo_url}" "${_p_install_dir}"
+    _p_echo "Cloning ${_p_repo_url} into ${_p_install_dir}"
+    git clone -q --depth=1 "${_p_repo_url}" "${_p_install_dir}"
     mv "${_p_install_dir}/_p.config.example" "${_p_install_dir}/_p.config"
   fi
 
@@ -24,8 +25,10 @@ install() {
   else
     printf "\n# Add _p install directory to \$PATH}\nexport PATH=\"${_p_install_dir}:${PATH}\"" >>"${HOME}/.bashrc"
 
+    _p_echo "Installation done"
     _p_echo "Close and reopen your terminal to start using _p or run the following command: "
-    printf "export PATH=\"${_p_install_dir}:${PATH}\"\n"
+    printf "export PATH=\"${_p_install_dir}:\${PATH}\"\n"
+    _p_echo "To check if everything is ok, you can run: \n_p"
   fi
 }
 
