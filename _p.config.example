@@ -1,15 +1,12 @@
-# DEBUG=false
-
-# change local to false if you want to use _p across multiple project contained in $projects_dir
-local=true
-
-interactive_mode=false
-
 default_p_dir="._p"
 
-default_projects_dir="/path/to/projects_dir"
-projects_dir=$default_projects_dir
+# it will be interpreted as $(pwd)
+projects_dir=""
+
+# set directories (projects) to ignore 
 projects_dir_to_ignore=("test" "lost+found" ".*")
 
+# set directories to ignore inside each project
 project_dir_to_ignore=("vendor" "node_modules" "._p" "public" ".*")
+# set files to ignore inside each project
 project_files_to_ignore=("_p*" "README.md")
