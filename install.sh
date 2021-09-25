@@ -25,7 +25,7 @@ install() {
     printf "\n# Add _p install directory to \$PATH}\nexport PATH=\"${_p_install_dir}:${PATH}\"" >>"${HOME}/.bashrc"
 
     _p_echo "Close and reopen your terminal to start using _p or run the following command: "
-    printf "export PATH=\"${_p_install_dir}:${PATH}\""
+    printf "export PATH=\"${_p_install_dir}:${PATH}\"\n"
   fi
 }
 
