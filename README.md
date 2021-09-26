@@ -6,7 +6,7 @@ _p is a bash script mainly designed to works with [_p templates](https://github.
 
 ### Global
 
-To install `_p` globally you should run the [install script](https://github.com/0kyn/_p/blob/master/_p)
+To install `_p` globally you should run the [install script](https://github.com/0kyn/_p/blob/master/install.sh)
 
 ```bash
 curl -so- https://raw.githubusercontent.com/0kyn/_p/master/install.sh | bash
