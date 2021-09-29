@@ -57,7 +57,7 @@ _p --init
 ./_p --init
 ```
 
-This command clones [_p templates](https://github.com/0kyn/_p-templates) repository in `/path/to/projects/projectA/._p` and ask for cleaning git related files `.gitignore`, `README.md`, `LICENCE`...
+This command clones [_p templates](https://github.com/0kyn/_p-templates) repository in `/path/to/projects/projectA/._p` and ask for deleting git related files and folder `.git/`, `.gitignore`, `README.md`, `LICENCE`...
 
 **OR**
 
