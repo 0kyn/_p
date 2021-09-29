@@ -17,7 +17,11 @@ This script clones `_p` repository into your home repository `~/._p`, and add ex
 export PATH="${_p_install_dir}:${PATH}"
 ```
 
-Once installed you should restart your terminal, or manually execute the export command above.  
+Once installed you should restart your terminal, or manually execute the command below:
+```bash
+export PATH="${HOME}/._p:${PATH}"
+```
+
 Then just run: 
 ```bash
 _p 
