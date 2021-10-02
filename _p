@@ -11,12 +11,6 @@ source $script_dir/_p.config
 
 ### FUNCTIONS ###
 ## utils
-join_by() {
-  local d=${1-} f=${2-}
-  if shift 2; then
-    printf %s "$f" "${@/#/$d}"
-  fi
-}
 
 array_to_params() {
   local param_name=$1
