@@ -48,6 +48,7 @@ Options:
 
 Commands:
     --init                      Create ._p directory and install default _p templates
+    -b | --backup               Backup all project files into a tar.gz archive in ./._p-bak/[PROJECT_NAME]-[TIMESTAMP].tar.gz
     -ls| --list                 List scoped projects
     -s | --search PATTERN       Search for PATTERN into files
     -f | --file FILENAME        Displays the content of FILENAME from PROJECT_NAME
@@ -90,6 +91,25 @@ init() {
       _p_print "_p templates installed"
     fi
   fi
+}
+
+backup() {
+  local pjs_dir
+  local project_path_src="${projects_dir}"
+  if [[ -z $project_name ]]; then
+    project_name=$(basename $project_path_src)
+    project_path_src=$(dirname $project_path_src)
+  fi
+  pjs_dir=$project_path_src
+  project_path_src+="/${project_name}"
+
+  local project_path_dest="${project_path_src}/${default_p_dir}/backup"
+  local date_format=$(date "+%Y-%m-%d-%H%M%S")
+
+  mkdir -p ${project_path_dest}
+  tar --exclude "${default_p_dir}/backup" -pczf "${project_path_dest}/${date_format}.tar.gz" -C "${pjs_dir}" ${project_name}
+
+  echo "Project backed up in ${project_path_dest}/${date_format}.tar.gz"
 }
 
 clear_template() {
@@ -203,6 +223,11 @@ parse_params() {
     # commands
     --init)
       init
+      exit 0
+      ;;
+
+    -b | --backup)
+      backup
       exit 0
       ;;
 
