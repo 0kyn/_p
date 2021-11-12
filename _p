@@ -48,7 +48,7 @@ Options:
 
 Commands:
     --init                      Create ._p directory and install default _p templates
-    -ls| --list                  List scoped projects
+    -ls| --list                 List scoped projects
     -s | --search PATTERN       Search for PATTERN into files
     -f | --file FILENAME        Displays the content of FILENAME from PROJECT_NAME
       -h | --headings PATTERN   Extract ##PATTERN block from FILENAME
